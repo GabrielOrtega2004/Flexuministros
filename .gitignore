@@ -1,0 +1,9 @@
+# Material de trabajo y revisiones locales; no forma parte del sitio público.
+.edge-review/
+capturas-cliente/
+_src/
+*.mp4
+hero-review.png
+principles-*.png
+Reporte-*.html
+

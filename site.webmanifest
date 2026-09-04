@@ -1,0 +1,28 @@
+{
+  "name": "Flexuministros — Suministros para impresión flexográfica",
+  "short_name": "Flexuministros",
+  "description": "Suministros, consultoría y equipos para la industria de impresión flexográfica en México.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#F57F01",
+  "lang": "es-MX",
+  "icons": [
+    {
+      "src": "/assets/img/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/assets/img/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "/assets/img/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}
