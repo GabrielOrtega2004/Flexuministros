@@ -7,3 +7,8 @@ hero-review.png
 principles-*.png
 Reporte-*.html
 
+# Panel administrativo: credenciales reales de la base de datos.
+# Copie inc/config.ejemplo.php a inc/config.php y complete sus datos —
+# ese archivo sí se sube (es la plantilla), config.php nunca.
+inc/config.php
+

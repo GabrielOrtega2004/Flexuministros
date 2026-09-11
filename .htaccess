@@ -2,8 +2,12 @@
 # Flexuministros — configuración Apache (hosting compartido cPanel/Plesk)
 # =====================================================================
 
+# ----- Página de inicio -----
+DirectoryIndex index.php index.html
+
 # ----- Página de error -----
-ErrorDocument 404 /404.html
+ErrorDocument 404 /404.php
+
 
 # ----- Compresión -----
 <IfModule mod_deflate.c>
@@ -58,9 +62,10 @@ ErrorDocument 404 /404.html
 <IfModule mod_rewrite.c>
   RewriteEngine On
 
-  # Fuerza HTTPS
+  # Fuerza HTTPS (excepto en localhost, para poder probar el sitio en XAMPP)
   RewriteCond %{HTTPS} !=on
   RewriteCond %{HTTP:X-Forwarded-Proto} !https
+  RewriteCond %{HTTP_HOST} !=localhost
   RewriteRule ^(.*)$ https://%{HTTP_HOST}/$1 [R=301,L]
 
   # Fuerza el subdominio www (coincide con la URL canónica del sitio)
@@ -70,4 +75,23 @@ ErrorDocument 404 /404.html
   # /index.html -> /
   RewriteCond %{THE_REQUEST} \s/index\.html[\s?] [NC]
   RewriteRule ^index\.html$ / [R=301,L]
+
+  # ----- Carpetas internas: nunca accesibles por URL directa -----
+  # _src: código fuente sin minificar y material del cliente.
+  # inc, admin/inc: conexión a la base de datos y funciones internas.
+  # sql: scripts que BORRAN y regeneran la base de datos — jamás deben
+  #      poder ejecutarse por accidente desde el navegador.
+  RewriteRule ^_src(/|$) - [F,L]
+  RewriteRule ^inc(/|$) - [F,L]
+  RewriteRule ^admin/inc(/|$) - [F,L]
+  RewriteRule ^sql(/|$) - [F,L]
+
+  # ----- Sitio dinámico: las mismas URLs de siempre, servidas por PHP -----
+  # (reescritura interna: la barra de direcciones no cambia)
+  RewriteRule ^$ index.php [L]
+  RewriteRule ^nosotros\.html$ nosotros.php [L]
+  RewriteRule ^productos\.html$ productos.php [L]
+  RewriteRule ^equipos\.html$ equipos.php [L]
+  RewriteRule ^servicios\.html$ servicios.php [L]
+  RewriteRule ^contacto\.html$ contacto.php [L]
 </IfModule>
