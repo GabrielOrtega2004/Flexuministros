@@ -104,8 +104,8 @@ function banda_cta_html(): string {
     </div>
     <div class="container">
       <div class="ctaband__inner">
-        <h2>¿Necesita un <em>suministro específico?</em></h2>
-        <p>Cuéntenos su proceso y le recomendamos el producto correcto. Cotizaciones sin compromiso y asesoría técnica incluida.</p>
+        <h2>¿Necesitas algo <em>en específico?</em></h2>
+        <p>Cuéntenos su proceso y le recomendamos el producto o equipo correcto... Cotizaciones sin compromiso y asesoría técnica incluida.</p>
         <div class="ctaband__actions">
           <a class="btn btn--primary" href="/contacto.html">Solicitar cotización</a>
           <a class="btn btn--onDark" href="' . $wa . '" target="_blank" rel="noopener">' . iconoRelleno('wa', 'ctaband__wa-logo') . 'Escribir por WhatsApp</a>
@@ -116,7 +116,7 @@ function banda_cta_html(): string {
 }
 
 function pie_html(): string {
-  $anioFundacion = obtenerConfig('fundacion_anio', '1996');
+  $anioFundacion = obtenerConfig('fundacion_anio', '2004');
   $tel = obtenerConfig('telefono_principal', '3338387947');
   $telFmt = obtenerConfig('telefono_principal_formato', '33 3838 7947');
   $waIntl = obtenerConfig('whatsapp_intl', '523321063740');
@@ -165,7 +165,7 @@ function pie_html(): string {
             <li><a href="/productos.html?cat=auxiliares">Productos auxiliares</a></li>
             <li><a href="/productos.html?cat=instrumentos">Instrumentos</a></li>
             <li><a href="/productos.html?cat=herramentales">Herramentales</a></li>
-            <li><a href="/productos.html?cat=cintas">Cintas y adhesivos</a></li>
+            <li><a href="/productos.html?cat=cintas">Cintas adhesivas</a></li>
             <li><a href="/productos.html?cat=limpiadores">Limpiadores</a></li>
             <li><a href="/productos.html?cat=lubricantes">Lubricantes</a></li>
             <li><a href="/productos.html?cat=varios">Consumibles</a></li>

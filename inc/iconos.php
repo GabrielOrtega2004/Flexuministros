@@ -32,6 +32,9 @@ const ICONOS = [
   'wrench' => '<path d="M15 3a5 5 0 0 0-4.5 7.2L3 17.7 6.3 21l7.5-7.5A5 5 0 1 0 15 3Z"/>',
   'user' => '<circle cx="12" cy="8" r="4"/><path d="M4 21v-1a6 6 0 0 1 6-6h4a6 6 0 0 1 6 6v1"/>',
   'eye-off' => '<path d="M9.9 5.1A10.4 10.4 0 0 1 12 5c7 0 10 7 10 7a13 13 0 0 1-2.2 3.2M6.6 6.6A13.5 13.5 0 0 0 2 12s3 7 10 7a9.7 9.7 0 0 0 4.4-1"/><path d="M9.9 9.9a3 3 0 0 0 4.2 4.2"/><path d="M2 2l20 20"/>',
+  'menu' => '<path d="M4 6h16M4 12h16M4 18h16"/>',
+  'lock' => '<rect x="5" y="10" width="14" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/>',
+  'imagen' => '<rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/>',
 ];
 
 function icono(string $nombre, string $clase = ''): string {

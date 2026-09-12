@@ -210,10 +210,10 @@ panelAbrir($titulo, 'servicios');
       <tbody>
         <?php $stM = $pdo->query('SELECT * FROM marcas_servicio ORDER BY orden ASC'); foreach ($stM->fetchAll() as $m): ?>
         <tr>
-          <td><img class="tabla-img" src="/uploads/marcas_servicio/<?= esc($m['logo']) ?>" alt="" style="object-fit:contain;background:#fff;border:1px solid #EFEDE8"></td>
-          <td><strong><?= esc($m['nombre']) ?></strong></td>
-          <td style="color:#77736B;font-size:.85rem"><?= esc($m['descripcion']) ?></td>
-          <td>
+          <td class="tabla-miniatura"><img class="tabla-img" src="/uploads/marcas_servicio/<?= esc($m['logo']) ?>" alt="" style="object-fit:contain;background:#fff;border:1px solid #EFEDE8"></td>
+          <td data-label="Nombre"><strong><?= esc($m['nombre']) ?></strong></td>
+          <td data-label="Descripción" style="color:#77736B;font-size:.85rem"><?= esc($m['descripcion']) ?></td>
+          <td data-label="Visible">
             <form method="post" style="display:inline">
               <input type="hidden" name="accion" value="visibilidad_marca"><input type="hidden" name="id" value="<?= $m['id'] ?>">
               <button style="padding:.2rem;background:none;border:0" type="submit"><span class="etiqueta <?= $m['visible'] ? 'etiqueta--si' : 'etiqueta--no' ?>"><?= $m['visible'] ? 'Visible' : 'Oculto' ?></span></button>
@@ -244,20 +244,34 @@ panelAbrir($titulo, 'servicios');
       <input type="hidden" name="accion" value="guardar">
       <input type="hidden" name="id" value="<?= (int)($editando['id'] ?? 0) ?>">
 
-      <div class="form__campo"><label for="titulo">Título del servicio *</label><input id="titulo" name="titulo" type="text" required value="<?= esc($editando['titulo'] ?? '') ?>"></div>
-      <div class="form__campo"><label for="eyebrow">Etiqueta (arriba del título)</label><input id="eyebrow" name="eyebrow" type="text" value="<?= esc($editando['eyebrow'] ?? '') ?>"></div>
-      <div class="form__campo"><label for="texto_principal">Texto principal *</label><textarea id="texto_principal" name="texto_principal" required><?= esc($editando['texto_principal'] ?? '') ?></textarea></div>
-      <div class="form__campo"><label for="texto_secundario">Texto adicional</label><textarea id="texto_secundario" name="texto_secundario"><?= esc($editando['texto_secundario'] ?? '') ?></textarea></div>
-      <div class="form__campo"><label for="texto_extra">Nota extra (opcional)</label><textarea id="texto_extra" name="texto_extra"><?= esc($editando['texto_extra'] ?? '') ?></textarea><p class="form__ayuda">Se muestra como un párrafo aparte, después del texto adicional.</p></div>
-      <div class="form__campo"><label for="whatsapp_texto">Mensaje de WhatsApp al cotizar</label><input id="whatsapp_texto" name="whatsapp_texto" type="text" value="<?= esc($editando['whatsapp_texto'] ?? '') ?>"></div>
-
-      <div class="form__campo">
-        <label>Imagen</label>
-        <?php if (!empty($editando['imagen'])): ?><img class="form__vista-imagen" src="/uploads/servicios/<?= esc($editando['imagen']) ?>" alt=""><?php endif; ?>
-        <input name="imagen" type="file" accept="image/png,image/jpeg,image/webp,image/gif">
-        <p class="form__ayuda">JPG, PNG, WEBP o GIF, máximo 4 MB. Deje vacío para conservar la actual.</p>
+      <div class="form__seccion">
+        <h2 class="form__seccion-titulo"><span class="form__seccion-icono"><?= icono('target') ?></span>Información general</h2>
+        <div class="form__campo"><label for="titulo">Título del servicio *</label><input id="titulo" name="titulo" type="text" required value="<?= esc($editando['titulo'] ?? '') ?>"></div>
+        <div class="form__campo"><label for="eyebrow">Etiqueta (arriba del título)</label><input id="eyebrow" name="eyebrow" type="text" value="<?= esc($editando['eyebrow'] ?? '') ?>"></div>
       </div>
-      <div class="form__campo"><label class="checkbox"><input type="checkbox" name="visible" <?= ($editando['visible'] ?? 1) ? 'checked' : '' ?>> Mostrar este servicio en el sitio</label></div>
+
+      <div class="form__seccion">
+        <h2 class="form__seccion-titulo"><span class="form__seccion-icono"><?= icono('leaf') ?></span>Descripción</h2>
+        <div class="form__campo"><label for="texto_principal">Texto principal *</label><textarea id="texto_principal" name="texto_principal" required><?= esc($editando['texto_principal'] ?? '') ?></textarea></div>
+        <div class="form__campo"><label for="texto_secundario">Texto adicional</label><textarea id="texto_secundario" name="texto_secundario"><?= esc($editando['texto_secundario'] ?? '') ?></textarea></div>
+        <div class="form__campo"><label for="texto_extra">Nota extra (opcional)</label><textarea id="texto_extra" name="texto_extra"><?= esc($editando['texto_extra'] ?? '') ?></textarea><p class="form__ayuda">Se muestra como un párrafo aparte, después del texto adicional.</p></div>
+      </div>
+
+      <div class="form__seccion">
+        <h2 class="form__seccion-titulo"><span class="form__seccion-icono"><?= icono('imagen') ?></span>Imagen</h2>
+        <div class="form__campo">
+          <label>Imagen</label>
+          <?php if (!empty($editando['imagen'])): ?><img class="form__vista-imagen" src="/uploads/servicios/<?= esc($editando['imagen']) ?>" alt=""><?php endif; ?>
+          <input name="imagen" type="file" accept="image/png,image/jpeg,image/webp,image/gif">
+          <p class="form__ayuda">JPG, PNG, WEBP o GIF, máximo 4 MB. Deje vacío para conservar la actual.</p>
+        </div>
+      </div>
+
+      <div class="form__seccion">
+        <h2 class="form__seccion-titulo"><span class="form__seccion-icono"><?= icono('wa') ?></span>Contacto y visibilidad</h2>
+        <div class="form__campo"><label for="whatsapp_texto">Mensaje de WhatsApp al cotizar</label><input id="whatsapp_texto" name="whatsapp_texto" type="text" value="<?= esc($editando['whatsapp_texto'] ?? '') ?>"></div>
+        <div class="form__campo"><label class="checkbox"><input type="checkbox" name="visible" <?= ($editando['visible'] ?? 1) ? 'checked' : '' ?>> Mostrar este servicio en el sitio</label></div>
+      </div>
 
       <button class="btn btn--primario" type="submit"><?= icono('check') ?>Guardar servicio</button>
     </form>
@@ -274,14 +288,14 @@ panelAbrir($titulo, 'servicios');
       <tbody>
         <?php foreach (obtenerServicios(false) as $s): ?>
         <tr>
-          <td><?php if ($s['imagen']): ?><img class="tabla-img" src="/uploads/servicios/<?= esc($s['imagen']) ?>" alt=""><?php else: ?><span class="tabla-img" style="display:grid;place-items:center;color:#B7B2A6"><?= icono($s['icono'] ?: 'box') ?></span><?php endif; ?></td>
-          <td><strong><?= esc($s['titulo']) ?></strong><br><span style="color:#77736B;font-size:.8rem"><?= esc($s['eyebrow']) ?></span></td>
-          <td>
+          <td class="tabla-miniatura"><?php if ($s['imagen']): ?><img class="tabla-img" src="/uploads/servicios/<?= esc($s['imagen']) ?>" alt=""><?php else: ?><span class="tabla-img" style="display:grid;place-items:center;color:#B7B2A6"><?= icono($s['icono'] ?: 'box') ?></span><?php endif; ?></td>
+          <td data-label="Título"><strong><?= esc($s['titulo']) ?></strong><br><span style="color:#77736B;font-size:.8rem"><?= esc($s['eyebrow']) ?></span></td>
+          <td data-label="Visible">
             <form method="post" style="display:inline"><input type="hidden" name="accion" value="visibilidad"><input type="hidden" name="id" value="<?= $s['id'] ?>">
               <button style="padding:.2rem;background:none;border:0" type="submit"><span class="etiqueta <?= $s['visible'] ? 'etiqueta--si' : 'etiqueta--no' ?>"><?= $s['visible'] ? 'Visible' : 'Oculto' ?></span></button>
             </form>
           </td>
-          <td>
+          <td data-label="Orden">
             <form method="post" style="display:inline"><input type="hidden" name="accion" value="mover"><input type="hidden" name="id" value="<?= $s['id'] ?>"><input type="hidden" name="direccion" value="arriba"><button class="btn btn--fantasma" style="padding:.3rem .5rem" type="submit">↑</button></form>
             <form method="post" style="display:inline"><input type="hidden" name="accion" value="mover"><input type="hidden" name="id" value="<?= $s['id'] ?>"><input type="hidden" name="direccion" value="abajo"><button class="btn btn--fantasma" style="padding:.3rem .5rem" type="submit">↓</button></form>
           </td>

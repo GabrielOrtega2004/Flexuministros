@@ -161,38 +161,27 @@ if ($mostrarFormulario):
       <input type="hidden" name="accion" value="guardar">
       <input type="hidden" name="id" value="<?= (int)($editando['id'] ?? 0) ?>">
 
-      <div class="form__campo">
-        <label for="nombre">Nombre del equipo *</label>
-        <input id="nombre" name="nombre" type="text" required value="<?= esc($editando['nombre'] ?? '') ?>">
-      </div>
-
-      <div class="form__fila">
+      <div class="form__seccion">
+        <h2 class="form__seccion-titulo"><span class="form__seccion-icono"><?= icono('target') ?></span>Información general</h2>
         <div class="form__campo">
-          <label for="tipo">Condición</label>
-          <select id="tipo" name="tipo">
-            <option value="nuevo" <?= ($editando['tipo'] ?? '') === 'nuevo' ? 'selected' : '' ?>>Nuevo</option>
-            <option value="usado" <?= ($editando['tipo'] ?? '') === 'usado' ? 'selected' : '' ?>>Usado</option>
-          </select>
+          <label for="nombre">Nombre del equipo *</label>
+          <input id="nombre" name="nombre" type="text" required value="<?= esc($editando['nombre'] ?? '') ?>">
+        </div>
+        <div class="form__fila">
+          <div class="form__campo">
+            <label for="tipo">Condición</label>
+            <select id="tipo" name="tipo">
+              <option value="nuevo" <?= ($editando['tipo'] ?? '') === 'nuevo' ? 'selected' : '' ?>>Nuevo</option>
+              <option value="usado" <?= ($editando['tipo'] ?? '') === 'usado' ? 'selected' : '' ?>>Usado</option>
+            </select>
+          </div>
+          <div class="form__campo">
+            <label for="eyebrow">Etiqueta (arriba del título)</label>
+            <input id="eyebrow" name="eyebrow" type="text" placeholder="Ej. Fabricación propia" value="<?= esc($editando['eyebrow'] ?? '') ?>">
+          </div>
         </div>
         <div class="form__campo">
-          <label for="eyebrow">Etiqueta (arriba del título)</label>
-          <input id="eyebrow" name="eyebrow" type="text" placeholder="Ej. Fabricación propia" value="<?= esc($editando['eyebrow'] ?? '') ?>">
-        </div>
-      </div>
-
-      <div class="form__campo">
-        <label for="descripcion_corta">Descripción corta *</label>
-        <textarea id="descripcion_corta" name="descripcion_corta" required><?= esc($editando['descripcion_corta'] ?? '') ?></textarea>
-        <p class="form__ayuda">Aparece como primer párrafo, más destacado.</p>
-      </div>
-      <div class="form__campo">
-        <label for="descripcion">Descripción adicional</label>
-        <textarea id="descripcion" name="descripcion"><?= esc($editando['descripcion'] ?? '') ?></textarea>
-      </div>
-
-      <div class="form__fila">
-        <div class="form__campo">
-          <label for="icono">Ícono</label>
+          <label for="icono">Ícono de respaldo</label>
           <select id="icono" name="icono">
             <?php foreach ($iconosDisponibles as $ic): ?>
             <option value="<?= $ic ?>" <?= ($editando['icono'] ?? '') === $ic ? 'selected' : '' ?>><?= ucfirst($ic) ?></option>
@@ -200,49 +189,66 @@ if ($mostrarFormulario):
           </select>
           <p class="form__ayuda">Se usa solo si no hay foto principal.</p>
         </div>
+      </div>
+
+      <div class="form__seccion">
+        <h2 class="form__seccion-titulo"><span class="form__seccion-icono"><?= icono('leaf') ?></span>Descripción</h2>
+        <div class="form__campo">
+          <label for="descripcion_corta">Descripción corta *</label>
+          <textarea id="descripcion_corta" name="descripcion_corta" required><?= esc($editando['descripcion_corta'] ?? '') ?></textarea>
+          <p class="form__ayuda">Aparece como primer párrafo, más destacado.</p>
+        </div>
+        <div class="form__campo">
+          <label for="descripcion">Descripción adicional</label>
+          <textarea id="descripcion" name="descripcion"><?= esc($editando['descripcion'] ?? '') ?></textarea>
+        </div>
+      </div>
+
+      <div class="form__seccion">
+        <h2 class="form__seccion-titulo"><span class="form__seccion-icono"><?= icono('imagen') ?></span>Imágenes</h2>
+        <div class="form__campo">
+          <label>Imagen principal</label>
+          <?php if (!empty($editando['imagen_principal'])): ?>
+          <img class="form__vista-imagen" src="/uploads/equipos/<?= esc($editando['imagen_principal']) ?>" alt="">
+          <?php endif; ?>
+          <input name="imagen_principal" type="file" accept="image/png,image/jpeg,image/webp,image/gif">
+          <p class="form__ayuda">JPG, PNG, WEBP o GIF, máximo 4 MB. Deje vacío para conservar la actual.</p>
+        </div>
+
+        <?php if ($editando && $imagenesGaleria): ?>
+        <div class="form__campo">
+          <label>Imágenes adicionales</label>
+          <div style="display:flex;gap:.6rem;flex-wrap:wrap">
+            <?php foreach ($imagenesGaleria as $img): ?>
+            <div style="text-align:center">
+              <img class="tabla-img" style="width:5rem;height:5rem" src="/uploads/equipos/<?= esc($img['ruta']) ?>" alt="">
+              <form method="post" onsubmit="return confirm('¿Quitar esta imagen de la galería?')" style="margin-top:.3rem">
+                <input type="hidden" name="accion" value="eliminar_imagen_galeria">
+                <input type="hidden" name="id" value="<?= $editando['id'] ?>">
+                <input type="hidden" name="imagen_id" value="<?= $img['id'] ?>">
+                <button class="btn btn--peligro" type="submit" style="padding:.2rem .5rem;font-size:.72rem">Quitar</button>
+              </form>
+            </div>
+            <?php endforeach; ?>
+          </div>
+        </div>
+        <?php endif; ?>
+        <div class="form__campo">
+          <label>Agregar imágenes a la galería</label>
+          <input name="galeria[]" type="file" accept="image/png,image/jpeg,image/webp,image/gif" multiple>
+          <p class="form__ayuda">Puede seleccionar varias a la vez. Se guardan al presionar "Guardar equipo".</p>
+        </div>
+      </div>
+
+      <div class="form__seccion">
+        <h2 class="form__seccion-titulo"><span class="form__seccion-icono"><?= icono('wa') ?></span>Contacto y visibilidad</h2>
         <div class="form__campo">
           <label for="whatsapp_texto">Mensaje de WhatsApp al cotizar</label>
           <input id="whatsapp_texto" name="whatsapp_texto" type="text" value="<?= esc($editando['whatsapp_texto'] ?? ('Hola Flexuministros, quisiera información sobre ' . ($editando['nombre'] ?? 'este equipo') . '.')) ?>">
         </div>
-      </div>
-
-      <div class="form__campo">
-        <label>Imagen principal</label>
-        <?php if (!empty($editando['imagen_principal'])): ?>
-        <img class="form__vista-imagen" src="/uploads/equipos/<?= esc($editando['imagen_principal']) ?>" alt="">
-        <?php endif; ?>
-        <input name="imagen_principal" type="file" accept="image/png,image/jpeg,image/webp,image/gif">
-        <p class="form__ayuda">JPG, PNG, WEBP o GIF, máximo 4 MB. Deje vacío para conservar la actual.</p>
-      </div>
-
-      <?php if ($editando): ?>
-      <div class="form__campo">
-        <label>Imágenes adicionales</label>
-        <?php if ($imagenesGaleria): ?>
-        <div style="display:flex;gap:.6rem;flex-wrap:wrap;margin-bottom:.75rem">
-          <?php foreach ($imagenesGaleria as $img): ?>
-          <div style="text-align:center">
-            <img class="tabla-img" style="width:5rem;height:5rem" src="/uploads/equipos/<?= esc($img['ruta']) ?>" alt="">
-            <form method="post" onsubmit="return confirm('¿Quitar esta imagen de la galería?')" style="margin-top:.3rem">
-              <input type="hidden" name="accion" value="eliminar_imagen_galeria">
-              <input type="hidden" name="id" value="<?= $editando['id'] ?>">
-              <input type="hidden" name="imagen_id" value="<?= $img['id'] ?>">
-              <button class="btn btn--peligro" type="submit" style="padding:.2rem .5rem;font-size:.72rem">Quitar</button>
-            </form>
-          </div>
-          <?php endforeach; ?>
+        <div class="form__campo">
+          <label class="checkbox"><input type="checkbox" name="visible" <?= ($editando['visible'] ?? 1) ? 'checked' : '' ?>> Mostrar este equipo en el sitio</label>
         </div>
-        <?php endif; ?>
-      </div>
-      <?php endif; ?>
-      <div class="form__campo">
-        <label>Agregar imágenes a la galería</label>
-        <input name="galeria[]" type="file" accept="image/png,image/jpeg,image/webp,image/gif" multiple>
-        <p class="form__ayuda">Puede seleccionar varias a la vez. Se guardan al presionar "Guardar equipo".</p>
-      </div>
-
-      <div class="form__campo">
-        <label class="checkbox"><input type="checkbox" name="visible" <?= ($editando['visible'] ?? 1) ? 'checked' : '' ?>> Mostrar este equipo en el sitio</label>
       </div>
 
       <button class="btn btn--primario" type="submit"><?= icono('check') ?>Guardar equipo</button>
@@ -260,10 +266,10 @@ if ($mostrarFormulario):
       <tbody>
         <?php foreach (obtenerEquipos(false) as $e): ?>
         <tr>
-          <td><?php if ($e['imagen_principal']): ?><img class="tabla-img" src="/uploads/equipos/<?= esc($e['imagen_principal']) ?>" alt=""><?php else: ?><span class="tabla-img" style="display:grid;place-items:center;color:#B7B2A6"><?= icono($e['icono'] ?: 'box') ?></span><?php endif; ?></td>
-          <td><strong><?= esc($e['nombre']) ?></strong><br><span style="color:#77736B;font-size:.8rem"><?= esc($e['eyebrow']) ?></span></td>
-          <td><?= $e['tipo'] === 'nuevo' ? 'Nuevo' : 'Usado' ?></td>
-          <td>
+          <td class="tabla-miniatura"><?php if ($e['imagen_principal']): ?><img class="tabla-img" src="/uploads/equipos/<?= esc($e['imagen_principal']) ?>" alt=""><?php else: ?><span class="tabla-img" style="display:grid;place-items:center;color:#B7B2A6"><?= icono($e['icono'] ?: 'box') ?></span><?php endif; ?></td>
+          <td data-label="Nombre"><strong><?= esc($e['nombre']) ?></strong><br><span style="color:#77736B;font-size:.8rem"><?= esc($e['eyebrow']) ?></span></td>
+          <td data-label="Condición"><?= $e['tipo'] === 'nuevo' ? 'Nuevo' : 'Usado' ?></td>
+          <td data-label="Visible">
             <form method="post" style="display:inline">
               <input type="hidden" name="accion" value="visibilidad"><input type="hidden" name="id" value="<?= $e['id'] ?>">
               <button class="btn" style="padding:.2rem;background:none;border:0" type="submit" title="Mostrar/ocultar">
@@ -271,7 +277,7 @@ if ($mostrarFormulario):
               </button>
             </form>
           </td>
-          <td>
+          <td data-label="Orden">
             <form method="post" style="display:inline"><input type="hidden" name="accion" value="mover"><input type="hidden" name="id" value="<?= $e['id'] ?>"><input type="hidden" name="direccion" value="arriba"><button class="btn btn--fantasma" style="padding:.3rem .5rem" type="submit" title="Subir">↑</button></form>
             <form method="post" style="display:inline"><input type="hidden" name="accion" value="mover"><input type="hidden" name="id" value="<?= $e['id'] ?>"><input type="hidden" name="direccion" value="abajo"><button class="btn btn--fantasma" style="padding:.3rem .5rem" type="submit" title="Bajar">↓</button></form>
           </td>

@@ -130,8 +130,8 @@ if ($mostrarFormulario): ?>
       <tbody>
         <?php foreach ($usuarios as $u): ?>
         <tr>
-          <td><strong><?= esc($u['usuario']) ?></strong><?= $u['usuario'] === usuarioActual() ? ' <span class="etiqueta etiqueta--si">Su sesión</span>' : '' ?></td>
-          <td style="color:#77736B"><?= esc(date('d/m/Y', strtotime($u['creado_en']))) ?></td>
+          <td data-label="Usuario"><strong><?= esc($u['usuario']) ?></strong><?= $u['usuario'] === usuarioActual() ? ' <span class="etiqueta etiqueta--si">Su sesión</span>' : '' ?></td>
+          <td data-label="Creado" style="color:#77736B"><?= esc(date('d/m/Y', strtotime($u['creado_en']))) ?></td>
           <td class="tabla-acciones">
             <a class="btn btn--fantasma" href="/admin/usuarios.php?editar=<?= $u['id'] ?>">Editar</a>
             <?php if (count($usuarios) > 1): ?>

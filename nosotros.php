@@ -18,7 +18,7 @@ ob_start();
   <div class="pagehero__grid" aria-hidden="true"></div>
   <div class="container">
     <?= crumbs_html([['Inicio', '/'], ['Nosotros', '/nosotros.html']]) ?>
-    <h1>Tres décadas resolviendo el piso de producción</h1>
+    <h1>Más de dos décadas resolviendo el piso de producción</h1>
     <p>Somos una compañía mexicana especializada en soluciones integrales para contribuir a la optimización de procesos productivos en la industria de impresión flexográfica.</p>
     <div class="pagehero__actions">
       <a class="btn btn--primary" href="/productos.html">Ver nuestros productos <?= icono('arrow') ?></a>
@@ -31,11 +31,12 @@ ob_start();
     <div class="grid grid--2" style="gap:clamp(2rem,5vw,4rem);align-items:start">
       <div class="prose" data-reveal="left">
         <p class="eyebrow">Nuestra historia</p>
-        <h2>Fundada en <?= esc($anioFundacion) ?> en Guadalajara</h2>
-        <p>Flexuministros nació con un objetivo claro: acercar a los impresores flexográficos mexicanos con productos y conocimiento especializado que, hasta entonces, solo estaban al alcance de las grandes corporaciones.</p>
-        <p>Desde entonces hemos desarrollado una oferta integral que acompaña cada etapa del proceso: desde la preparación de tintas y el montaje de grabados hasta el corte, suajado, limpieza de rodillos anilox, control de calidad y empaque final del producto impreso.</p>
-        <p>Además de suministros y consumibles, comercializamos equipos nuevos y usados para la industria flexográfica. Nuestra asesoría técnica permite identificar las soluciones más adecuadas para cada proceso, considerando las necesidades de producción, desempeño y presupuesto de cada cliente.</p>
-        <p>Representamos firmas reconocidas mundialmente, sinónimo de innovación y confiabilidad, para ofrecer soluciones que contribuyan a mejorar la productividad y calidad de los procesos de impresión.</p>
+        <h2>Fundada en <?= esc($anioFundacion) ?> en Guadalajara, respaldada por más de 30 años de experiencia en la industria flexográfica</h2>
+        <p>Flexuministros fue fundada en <?= esc($anioFundacion) ?> en México (Guadalajara) con el objetivo de acercar a los impresores mexicanos: productos, tecnología y conocimiento especializado, respaldados por décadas de experiencia en la industria flexográfica.</p>
+        <p>A lo largo de los años hemos desarrollado una oferta integral que acompaña distintas etapas del proceso productivo: preparación de tintas, montaje de placas, impresión, suajado, limpieza de rodillos anilox, control de calidad, empaque y herramientas para el control de producción.</p>
+        <p>Además de suministros y consumibles especializados, comercializamos equipos nuevos y usados, herramentales y soluciones técnicas, ofreciendo asesoría para seleccionar la alternativa más adecuada de acuerdo con productividad, desempeño, calidad y presupuesto.</p>
+        <p>Trabajamos con marcas y fabricantes reconocidos mundialmente, incorporando tecnología, productos y soluciones confiables para atender tanto a empresas consolidadas como a nuevos proyectos que se preparan para incursionar en la industria flexográfica.</p>
+        <p>Nuestro objetivo es contribuir a fortalecer su productividad, calidad y competitividad, acompañándolos desde el inicio y a lo largo de su crecimiento.</p>
       </div>
 
       <figure class="quote" data-reveal="right" style="margin:0">
@@ -100,7 +101,7 @@ ob_start();
         <article class="workflow__step" data-reveal="right" style="--d:0ms">
           <span class="workflow__number" aria-hidden="true">01</span>
           <span class="workflow__marker"><span class="workflow__icon"><?= icono('users') ?></span></span>
-          <div><h3>Diagnóstico del proceso</h3><p>Revisamos con usted dónde se pierde tiempo o material: cambios de trabajo, limpieza de anilox, montaje de grabados, mermas por estática, fuera de registro, "tableteo", etc.</p></div>
+          <div><h3>Diagnóstico del proceso</h3><p>Revisamos con usted dónde se pierde tiempo o material: cambios de trabajo, limpieza de herramentales, montaje de grabados, mermas, etc.</p></div>
         </article>
         <article class="workflow__step" data-reveal="right" style="--d:90ms">
           <span class="workflow__number" aria-hidden="true">02</span>
@@ -115,7 +116,7 @@ ob_start();
         <article class="workflow__step" data-reveal="right" style="--d:270ms">
           <span class="workflow__number" aria-hidden="true">04</span>
           <span class="workflow__marker"><span class="workflow__icon"><?= icono('truck') ?></span></span>
-          <div><h3>Suministro y seguimiento</h3><p>Abastecemos de forma recurrente y damos seguimiento al desempeño del producto en piso para mejorar lo que haga falta.</p></div>
+          <div><h3>Suministro y seguimiento</h3><p>Abastecemos de forma recurrente y damos seguimiento al desempeño del producto en piso, para ajustar/mejorar lo que haga falta…</p></div>
         </article>
       </div>
     </div>
@@ -139,7 +140,7 @@ $body = ob_get_clean();
 
 echo pagina([
   'id' => 'nosotros',
-  'title' => 'Nosotros | Flexuministros — 30+ años en impresión flexográfica',
+  'title' => 'Nosotros | Flexuministros — Más de 20 años en impresión flexográfica',
   'description' => 'Conozca a Flexuministros: compañía mexicana fundada en ' . $anioFundacion . ', especializada en consultoría y suministros de bajo impacto ambiental para la industria de impresión flexográfica.',
   'canonical' => '/nosotros.html',
   'jsonld' => [crumbs_jsonld([['Inicio', '/'], ['Nosotros', '/nosotros.html']])],

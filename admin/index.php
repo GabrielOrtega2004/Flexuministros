@@ -16,24 +16,27 @@ panelAbrir('Inicio', 'inicio');
 <p style="color:#66625B;margin-top:-.75rem;margin-bottom:1.5rem">Desde aquí puede actualizar el contenido del sitio. Los cambios se publican de inmediato.</p>
 
 <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(14rem,1fr));gap:1rem">
-  <a class="tarjeta" href="/admin/equipos.php" style="text-decoration:none;color:inherit">
-    <p style="margin:0;color:#77736B;font-size:.82rem;font-weight:700;text-transform:uppercase">Equipos</p>
-    <p style="margin:.35rem 0 0;font-size:1.9rem;font-weight:800"><?= $totalEquipos ?></p>
-    <p style="margin:.25rem 0 0;font-size:.82rem;color:#77736B"><?= $equiposOcultos ?> oculto(s)</p>
+  <a class="tarjeta aparecer" href="/admin/equipos.php" style="animation-delay:.03s">
+    <div class="estadistica__icono"><?= icono('box') ?></div>
+    <p class="estadistica__etiqueta">Equipos</p>
+    <p class="estadistica__numero"><?= $totalEquipos ?></p>
+    <p class="estadistica__nota"><?= $equiposOcultos ?> oculto(s)</p>
   </a>
-  <a class="tarjeta" href="/admin/productos.php" style="text-decoration:none;color:inherit">
-    <p style="margin:0;color:#77736B;font-size:.82rem;font-weight:700;text-transform:uppercase">Productos</p>
-    <p style="margin:.35rem 0 0;font-size:1.9rem;font-weight:800"><?= $totalProductos ?></p>
-    <p style="margin:.25rem 0 0;font-size:.82rem;color:#77736B"><?= $productosOcultos ?> oculto(s)</p>
+  <a class="tarjeta aparecer" href="/admin/productos.php" style="animation-delay:.08s">
+    <div class="estadistica__icono"><?= icono('tray') ?></div>
+    <p class="estadistica__etiqueta">Productos</p>
+    <p class="estadistica__numero"><?= $totalProductos ?></p>
+    <p class="estadistica__nota"><?= $productosOcultos ?> oculto(s)</p>
   </a>
-  <a class="tarjeta" href="/admin/servicios.php" style="text-decoration:none;color:inherit">
-    <p style="margin:0;color:#77736B;font-size:.82rem;font-weight:700;text-transform:uppercase">Servicios</p>
-    <p style="margin:.35rem 0 0;font-size:1.9rem;font-weight:800"><?= $totalServicios ?></p>
-    <p style="margin:.25rem 0 0;font-size:.82rem;color:#77736B"><?= $serviciosOcultos ?> oculto(s)</p>
+  <a class="tarjeta aparecer" href="/admin/servicios.php" style="animation-delay:.13s">
+    <div class="estadistica__icono"><?= icono('wrench') ?></div>
+    <p class="estadistica__etiqueta">Servicios</p>
+    <p class="estadistica__numero"><?= $totalServicios ?></p>
+    <p class="estadistica__nota"><?= $serviciosOcultos ?> oculto(s)</p>
   </a>
 </div>
 
-<div class="tarjeta" style="margin-top:1.5rem">
+<div class="tarjeta aparecer" style="margin-top:1.5rem;animation-delay:.18s">
   <p style="margin:0 0 .75rem;font-weight:800">Accesos rápidos</p>
   <div style="display:flex;gap:.6rem;flex-wrap:wrap">
     <a class="btn btn--primario" href="/admin/equipos.php?nuevo=1"><?= icono('check') ?>Agregar equipo</a>

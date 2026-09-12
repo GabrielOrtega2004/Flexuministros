@@ -99,46 +99,54 @@ if ($mostrarFormulario): ?>
       <input type="hidden" name="accion" value="guardar">
       <input type="hidden" name="id" value="<?= (int)($editando['id'] ?? 0) ?>">
 
-      <div class="form__campo">
-        <label for="nombre">Nombre del producto *</label>
-        <input id="nombre" name="nombre" type="text" required value="<?= esc($editando['nombre'] ?? '') ?>">
-      </div>
-      <div class="form__campo">
-        <label for="descripcion">Descripción</label>
-        <input id="descripcion" name="descripcion" type="text" placeholder="Ej. Aquaflex, Comco, Mark Andy y más" value="<?= esc($editando['descripcion'] ?? '') ?>">
-      </div>
-
-      <div class="form__fila">
+      <div class="form__seccion">
+        <h2 class="form__seccion-titulo"><span class="form__seccion-icono"><?= icono('target') ?></span>Información general</h2>
         <div class="form__campo">
-          <label for="categoria_id">Categoría *</label>
-          <select id="categoria_id" name="categoria_id" required>
-            <?php foreach ($categorias as $cat): ?>
-            <option value="<?= esc($cat['id']) ?>" <?= ($editando['categoria_id'] ?? '') === $cat['id'] ? 'selected' : '' ?>><?= esc($cat['nombre']) ?></option>
-            <?php endforeach; ?>
-          </select>
+          <label for="nombre">Nombre del producto *</label>
+          <input id="nombre" name="nombre" type="text" required value="<?= esc($editando['nombre'] ?? '') ?>">
         </div>
         <div class="form__campo">
-          <label for="marca_id">Marca</label>
-          <select id="marca_id" name="marca_id">
-            <option value="">— Sin marca —</option>
-            <?php foreach ($marcas as $m): ?>
-            <option value="<?= $m['id'] ?>" <?= (int)($editando['marca_id'] ?? 0) === (int)$m['id'] ? 'selected' : '' ?>><?= esc($m['nombre']) ?></option>
-            <?php endforeach; ?>
-          </select>
+          <label for="descripcion">Descripción</label>
+          <input id="descripcion" name="descripcion" type="text" placeholder="Ej. Aquaflex, Comco, Mark Andy y más" value="<?= esc($editando['descripcion'] ?? '') ?>">
+        </div>
+        <div class="form__fila">
+          <div class="form__campo">
+            <label for="categoria_id">Categoría *</label>
+            <select id="categoria_id" name="categoria_id" required>
+              <?php foreach ($categorias as $cat): ?>
+              <option value="<?= esc($cat['id']) ?>" <?= ($editando['categoria_id'] ?? '') === $cat['id'] ? 'selected' : '' ?>><?= esc($cat['nombre']) ?></option>
+              <?php endforeach; ?>
+            </select>
+          </div>
+          <div class="form__campo">
+            <label for="marca_id">Marca</label>
+            <select id="marca_id" name="marca_id">
+              <option value="">— Sin marca —</option>
+              <?php foreach ($marcas as $m): ?>
+              <option value="<?= $m['id'] ?>" <?= (int)($editando['marca_id'] ?? 0) === (int)$m['id'] ? 'selected' : '' ?>><?= esc($m['nombre']) ?></option>
+              <?php endforeach; ?>
+            </select>
+          </div>
         </div>
       </div>
 
-      <div class="form__campo">
-        <label>Imagen del producto</label>
-        <?php if (!empty($editando['imagen'])): ?>
-        <img class="form__vista-imagen" src="/uploads/productos/<?= esc($editando['imagen']) ?>" alt="">
-        <?php endif; ?>
-        <input name="imagen" type="file" accept="image/png,image/jpeg,image/webp,image/gif">
-        <p class="form__ayuda">JPG, PNG, WEBP o GIF, máximo 4 MB. Deje vacío para conservar la actual.</p>
+      <div class="form__seccion">
+        <h2 class="form__seccion-titulo"><span class="form__seccion-icono"><?= icono('imagen') ?></span>Imagen</h2>
+        <div class="form__campo">
+          <label>Imagen del producto</label>
+          <?php if (!empty($editando['imagen'])): ?>
+          <img class="form__vista-imagen" src="/uploads/productos/<?= esc($editando['imagen']) ?>" alt="">
+          <?php endif; ?>
+          <input name="imagen" type="file" accept="image/png,image/jpeg,image/webp,image/gif">
+          <p class="form__ayuda">JPG, PNG, WEBP o GIF, máximo 4 MB. Deje vacío para conservar la actual.</p>
+        </div>
       </div>
 
-      <div class="form__campo">
-        <label class="checkbox"><input type="checkbox" name="visible" <?= ($editando['visible'] ?? 1) ? 'checked' : '' ?>> Mostrar este producto en el catálogo</label>
+      <div class="form__seccion">
+        <h2 class="form__seccion-titulo"><span class="form__seccion-icono"><?= icono('eye') ?></span>Visibilidad</h2>
+        <div class="form__campo">
+          <label class="checkbox"><input type="checkbox" name="visible" <?= ($editando['visible'] ?? 1) ? 'checked' : '' ?>> Mostrar este producto en el catálogo</label>
+        </div>
       </div>
 
       <button class="btn btn--primario" type="submit"><?= icono('check') ?>Guardar producto</button>
@@ -180,11 +188,11 @@ if ($mostrarFormulario): ?>
       <tbody>
         <?php foreach ($productos as $p): ?>
         <tr>
-          <td><?php if ($p['imagen']): ?><img class="tabla-img" src="/uploads/productos/<?= esc($p['imagen']) ?>" alt=""><?php else: ?><span class="tabla-img" style="display:grid;place-items:center;color:#B7B2A6"><?= icono('box') ?></span><?php endif; ?></td>
-          <td><strong><?= esc($p['nombre']) ?></strong><br><span style="color:#77736B;font-size:.8rem"><?= esc($p['descripcion']) ?></span></td>
-          <td><?= esc($p['categoria_nombre'] ?? '') ?></td>
-          <td><?= esc($p['marca_nombre'] ?? '—') ?></td>
-          <td>
+          <td class="tabla-miniatura"><?php if ($p['imagen']): ?><img class="tabla-img" src="/uploads/productos/<?= esc($p['imagen']) ?>" alt=""><?php else: ?><span class="tabla-img" style="display:grid;place-items:center;color:#B7B2A6"><?= icono('box') ?></span><?php endif; ?></td>
+          <td data-label="Nombre"><strong><?= esc($p['nombre']) ?></strong><br><span style="color:#77736B;font-size:.8rem"><?= esc($p['descripcion']) ?></span></td>
+          <td data-label="Categoría"><?= esc($p['categoria_nombre'] ?? '') ?></td>
+          <td data-label="Marca"><?= esc($p['marca_nombre'] ?? '—') ?></td>
+          <td data-label="Visible">
             <form method="post" style="display:inline">
               <input type="hidden" name="accion" value="visibilidad"><input type="hidden" name="id" value="<?= $p['id'] ?>"><input type="hidden" name="pagina" value="<?= $pagina ?>">
               <button style="padding:.2rem;background:none;border:0" type="submit"><span class="etiqueta <?= $p['visible'] ? 'etiqueta--si' : 'etiqueta--no' ?>"><?= $p['visible'] ? 'Visible' : 'Oculto' ?></span></button>
