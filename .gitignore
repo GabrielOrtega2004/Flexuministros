@@ -12,3 +12,5 @@ Reporte-*.html
 # ese archivo sí se sube (es la plantilla), config.php nunca.
 inc/config.php
 
+# Artefacto de GitHub Pages generado localmente y en Actions.
+_site/
