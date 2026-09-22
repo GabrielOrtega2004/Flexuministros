@@ -18,7 +18,7 @@ $marcasServicio = obtenerMarcasServicio(true);
 ob_start();
 ?>
 <section class="svc-top" data-pausar-fuera>
-  <div class="svc-top__media" aria-hidden="true"><img src="/assets/img/hero/<?= esc($c('servicios_hero_imagen', 'servicios-hero-v1.webp')) ?>" alt="" width="<?= (int)$c('servicios_hero_ancho', '1840') ?>" height="<?= (int)$c('servicios_hero_alto', '855') ?>"></div>
+  <div class="svc-top__media" aria-hidden="true"><img src="/uploads/configuracion/<?= esc($c('servicios_hero_imagen', 'servicios-hero-v1.webp')) ?>" alt="" width="<?= (int)$c('servicios_hero_ancho', '1840') ?>" height="<?= (int)$c('servicios_hero_alto', '855') ?>"></div>
   <div class="svc-top__aurora" aria-hidden="true"><i></i><i></i><i></i></div>
   <div class="svc-top__mesh" aria-hidden="true"></div>
   <div class="svc-top__beam" aria-hidden="true"></div>

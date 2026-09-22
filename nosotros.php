@@ -12,7 +12,7 @@ ob_start();
 ?>
 <section class="pagehero pagehero--about">
   <div class="pagehero__media" aria-hidden="true">
-    <img src="/assets/img/nosotros/<?= esc($c('nosotros_hero_imagen', 'nosotros-equipo-flexo-2-v2.webp')) ?>" width="<?= (int)$c('nosotros_hero_ancho', '1606') ?>" height="<?= (int)$c('nosotros_hero_alto', '979') ?>" alt="" fetchpriority="high" decoding="async">
+    <img src="/uploads/configuracion/<?= esc($c('nosotros_hero_imagen', 'nosotros-equipo-flexo-2-v2.webp')) ?>" width="<?= (int)$c('nosotros_hero_ancho', '1606') ?>" height="<?= (int)$c('nosotros_hero_alto', '979') ?>" alt="" fetchpriority="high" decoding="async">
   </div>
   <div class="pagehero__veil" aria-hidden="true"></div>
   <div class="pagehero__grid" aria-hidden="true"></div>

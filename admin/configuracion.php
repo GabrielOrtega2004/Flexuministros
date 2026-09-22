@@ -26,6 +26,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       guardarConfig("hero_imagen_{$n}_alto", (string)$subida['alto']);
     }
   }
+  foreach (['productos', 'nosotros', 'equipos', 'servicios'] as $pagina) {
+    $subida = procesarImagenSubida("{$pagina}_hero_imagen_archivo", 'configuracion');
+    if ($subida['ok'] && $subida['archivo']) {
+      guardarConfig("{$pagina}_hero_imagen", $subida['archivo']);
+      guardarConfig("{$pagina}_hero_ancho", (string)$subida['ancho']);
+      guardarConfig("{$pagina}_hero_alto", (string)$subida['alto']);
+    }
+  }
+  $subida = procesarImagenSubida('ctaband_imagen_archivo', 'configuracion');
+  if ($subida['ok'] && $subida['archivo']) {
+    guardarConfig('ctaband_imagen', $subida['archivo']);
+    guardarConfig('ctaband_ancho', (string)$subida['ancho']);
+    guardarConfig('ctaband_alto', (string)$subida['alto']);
+  }
   ponerMensaje('Configuración guardada correctamente.');
   header('Location: /admin/configuracion.php');
   exit;
@@ -99,6 +113,41 @@ panelAbrir('Configuración', 'configuracion');
       </div>
     </div>
     <p class="form__ayuda">El carrusel del inicio alterna entre estas dos fotos.</p>
+    <div class="form__campo" style="margin-top:1rem">
+      <label>Foto del bloque "¿Necesitas algo en específico?"</label>
+      <img class="form__vista-imagen" src="/uploads/configuracion/<?= esc($c('ctaband_imagen', 'flexo-industrial-v2.webp')) ?>" alt="">
+      <input name="ctaband_imagen_archivo" type="file" accept="image/png,image/jpeg,image/webp,image/gif">
+      <p class="form__ayuda">Aparece al final de todas las páginas, junto al botón de cotización.</p>
+    </div>
+  </div>
+
+  <div class="tarjeta" style="margin-bottom:1.25rem">
+    <h2 style="margin-top:0;font-size:1.1rem">Fotos de portada de cada sección</h2>
+    <p class="form__ayuda" style="margin-top:-.4rem">Foto grande que aparece arriba de cada página.</p>
+    <div class="form__fila">
+      <div class="form__campo">
+        <label>Productos</label>
+        <img class="form__vista-imagen" src="/uploads/configuracion/<?= esc($c('productos_hero_imagen', 'catalogo-v3-hd.webp')) ?>" alt="">
+        <input name="productos_hero_imagen_archivo" type="file" accept="image/png,image/jpeg,image/webp,image/gif">
+      </div>
+      <div class="form__campo">
+        <label>Nosotros</label>
+        <img class="form__vista-imagen" src="/uploads/configuracion/<?= esc($c('nosotros_hero_imagen', 'nosotros-equipo-flexo-2-v2.webp')) ?>" alt="">
+        <input name="nosotros_hero_imagen_archivo" type="file" accept="image/png,image/jpeg,image/webp,image/gif">
+      </div>
+    </div>
+    <div class="form__fila">
+      <div class="form__campo">
+        <label>Equipos</label>
+        <img class="form__vista-imagen" src="/uploads/configuracion/<?= esc($c('equipos_hero_imagen', 'hero-flexo-3-restaurada-v2.webp')) ?>" alt="">
+        <input name="equipos_hero_imagen_archivo" type="file" accept="image/png,image/jpeg,image/webp,image/gif">
+      </div>
+      <div class="form__campo">
+        <label>Servicios</label>
+        <img class="form__vista-imagen" src="/uploads/configuracion/<?= esc($c('servicios_hero_imagen', 'servicios-hero-v1.webp')) ?>" alt="">
+        <input name="servicios_hero_imagen_archivo" type="file" accept="image/png,image/jpeg,image/webp,image/gif">
+      </div>
+    </div>
   </div>
 
   <div class="tarjeta" style="margin-bottom:1.25rem">

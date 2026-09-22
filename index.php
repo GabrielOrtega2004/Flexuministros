@@ -50,7 +50,14 @@ ob_start();
     <div class="hero__stage">
       <div class="hero__copy">
         <p class="hero__badge hero-in" style="--d:60ms"><span class="hero__dot"></span><?= esc($c('hero_badge', 'Soluciones para la industria flexográfica')) ?></p>
-        <h1><span class="hero__headline-main"><?= esc($c('hero_titulo_1', 'Lo tuyo es FLEXO.')) ?></span><em><?= esc($c('hero_titulo_2', 'Lo nuestro, Suministros & Equipos.')) ?></em></h1>
+        <?php
+          $tituloSecundario = esc($c('hero_titulo_2', 'Lo nuestro, Suministros & Equipos.'));
+          $tituloSecundario = str_replace('&amp;', '<span class="hero__headline-accent">&amp;</span>', $tituloSecundario);
+          if (substr($tituloSecundario, -1) === '.') {
+            $tituloSecundario = substr($tituloSecundario, 0, -1) . '<span class="hero__headline-accent">.</span>';
+          }
+        ?>
+        <h1><span class="hero__headline-main"><?= esc($c('hero_titulo_1', 'Lo tuyo es FLEXO.')) ?></span><em><?= $tituloSecundario ?></em></h1>
         <p class="hero__text hero-in" style="--d:420ms"><?= esc($c('hero_texto', 'Consumibles, herramientas, accesorios, equipos, servicios especiales y soporte técnico para mantener su operación precisa, eficiente y siempre en movimiento.')) ?></p>
         <div class="hero__actions hero-in" style="--d:540ms">
           <a class="btn btn--primary" href="/productos.html">Ver catálogo <?= icono('arrow') ?></a>
@@ -70,8 +77,8 @@ ob_start();
 
     <div class="stats hero-in" style="--d:660ms">
       <div><b data-count="<?= $aniosExperiencia ?>" data-suffix="+"><?= $aniosExperiencia ?>+</b><span>Años de experiencia</span></div>
-      <div><b data-count="<?= $totalProductos ?>" data-suffix="+"><?= $totalProductos ?>+</b><span>Productos en catálogo</span></div>
-      <div><b data-count="<?= $totalMarcas ?>" data-suffix="+"><?= $totalMarcas ?>+</b><span>Marcas representadas</span></div>
+      <div><b data-count="150" data-suffix="+">150+</b><span>Productos en catálogo</span></div>
+      <div><b data-count="20" data-suffix="+">20+</b><span>Marcas representadas</span></div>
     </div>
   </div>
 
@@ -132,7 +139,7 @@ ob_start();
       <div class="feature" data-reveal style="--d:0ms"><span class="icon-badge"><?= icono('users') ?></span><div><h3>Consultoría especializada</h3><p>No solo vendemos producto: analizamos su proceso y recomendamos la solución que realmente resuelve el problema en piso.</p></div></div>
       <div class="feature" data-reveal style="--d:90ms"><span class="icon-badge"><?= icono('leaf') ?></span><div><h3>Bajo impacto ambiental</h3><p>Priorizamos productos biodegradables, reutilizables y equipos que tratan los residuos de tinta, contribuyendo a la ecología.</p></div></div>
       <div class="feature" data-reveal style="--d:180ms"><span class="icon-badge"><?= icono('globe') ?></span><div><h3>Marcas líderes mundiales</h3><p>Representamos firmas reconocidas internacionalmente, símbolo de innovación y confianza en la industria flexográfica.</p></div></div>
-      <div class="feature" data-reveal style="--d:270ms"><span class="icon-badge"><?= icono('truck') ?></span><div><h3>Surtido integral</h3><p>Más de <?= $totalProductos ?> productos en siete líneas: auxiliares, instrumentos, herramentales, cintas, limpiadores, lubricantes y consumibles.</p></div></div>
+      <div class="feature" data-reveal style="--d:270ms"><span class="icon-badge"><?= icono('truck') ?></span><div><h3>Surtido integral</h3><p>Más de 150 productos en siete líneas: auxiliares, instrumentos, herramentales, cintas, limpiadores, lubricantes y consumibles.</p></div></div>
       <div class="feature" data-reveal style="--d:360ms"><span class="icon-badge"><?= icono('wrench') ?></span><div><h3>Compra y venta de equipos</h3><p>Conectamos a nuestros clientes con maquinaria y accesorios confiables y adecuados para sus procesos, brindando asesoría durante el proceso de selección, compra, venta y/o consignación.</p></div></div>
     </div>
   </div>

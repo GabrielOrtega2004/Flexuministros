@@ -17,16 +17,16 @@ $items = array_map(fn($e) => [
 ob_start();
 ?>
 <section class="svc-top" data-pausar-fuera>
-  <div class="svc-top__media" aria-hidden="true"><img src="/assets/img/hero/<?= esc($c('equipos_hero_imagen', 'hero-flexo-3-restaurada-v2.webp')) ?>" alt="" width="<?= (int)$c('equipos_hero_ancho', '1448') ?>" height="<?= (int)$c('equipos_hero_alto', '1086') ?>"></div>
+  <div class="svc-top__media" aria-hidden="true"><img src="/uploads/configuracion/<?= esc($c('equipos_hero_imagen', 'hero-flexo-3-restaurada-v2.webp')) ?>" alt="" width="<?= (int)$c('equipos_hero_ancho', '1448') ?>" height="<?= (int)$c('equipos_hero_alto', '1086') ?>"></div>
   <div class="svc-top__aurora" aria-hidden="true"><i></i><i></i><i></i></div>
   <div class="svc-top__mesh" aria-hidden="true"></div>
   <div class="svc-top__beam" aria-hidden="true"></div>
   <div class="svc-top__scrim" aria-hidden="true"></div>
   <div class="container">
     <?= crumbs_html([['Inicio', '/'], ['Equipos', '/equipos.html']]) ?>
-    <p class="svc-top__eyebrow hero-in" style="--d:80ms"><span></span>Compra, venta y/o consignación</p>
-    <h1 class="hero-in" style="--d:150ms">Equipos para su línea de <em>producción.</em></h1>
-    <p class="svc-top__lead hero-in" style="--d:220ms">Fabricamos y comercializamos equipo nuevo: lavadoras de ultrasonido para limpieza de rodillos anilox, tratadoras de residuos de tinta, mesas rebobinadoras, cortadoras de centros, levantadores de rollos, herramentales y más. Además ofrecemos compra-venta de equipo usado: impresoras flexográficas, revisadoras, accesorios y herramentales.</p>
+    <p class="svc-top__eyebrow hero-in" style="--d:80ms"><span></span>Nuevos &amp; usados</p>
+    <h1 class="hero-in" style="--d:150ms">Equipos nuevos y usados para su línea de <em>producción.</em></h1>
+    <p class="svc-top__lead hero-in" style="--d:220ms">Fabricamos en México equipos para eficientar su operación y comercializamos maquinaria de marcas reconocidas internacionalmente para distintas etapas del proceso de impresión. Además, ofrecemos compra, venta y consignación de equipos usados, brindando soluciones para diferentes necesidades de producción e inversión.</p>
   </div>
 </section>
 

@@ -95,10 +95,13 @@ function encabezado_html(string $pagina): string {
 
 function banda_cta_html(): string {
   $wa = enlaceWhatsApp('Hola Flexuministros, necesito cotizar un suministro para mi proceso de impresión flexográfica.');
+  $ctaImagen = obtenerConfig('ctaband_imagen', 'flexo-industrial-v2.webp');
+  $ctaAncho = obtenerConfig('ctaband_ancho', '1600');
+  $ctaAlto = obtenerConfig('ctaband_alto', '900');
   return '<section class="ctaband" id="asesoria" data-reveal="trigger">
     <div class="ctaband__media" aria-hidden="true">
       <div class="ctaband__shot">
-        <img src="/assets/img/cta/flexo-industrial-v2.webp" width="1600" height="900" alt="" loading="lazy" decoding="async">
+        <img src="/uploads/configuracion/' . esc($ctaImagen) . '" width="' . (int)$ctaAncho . '" height="' . (int)$ctaAlto . '" alt="" loading="lazy" decoding="async">
       </div>
       <div class="ctaband__veil"></div>
     </div>
@@ -123,6 +126,7 @@ function pie_html(): string {
   $waFmt = obtenerConfig('whatsapp_formato', '33 2106 3740');
   $correoInfo = obtenerConfig('correo_info', 'info@flexuministros.com');
   $correoVentas = obtenerConfig('correo_ventas', 'ventas@flexuministros.com');
+  $correoAtencion = obtenerConfig('correo_atencion', 'atnclientes@flexuministros.com');
   $calle = obtenerConfig('direccion_calle', 'Aldama 770, Col. La Loma');
   $ciudad = obtenerConfig('direccion_ciudad', 'Guadalajara');
   $estado = obtenerConfig('direccion_estado', 'Jalisco');
@@ -163,7 +167,7 @@ function pie_html(): string {
           <h3 id="f-cat">Categorías</h3>
           <ul>
             <li><a href="/productos.html?cat=auxiliares">Productos auxiliares</a></li>
-            <li><a href="/productos.html?cat=instrumentos">Instrumentos</a></li>
+            <li><a href="/productos.html?cat=instrumentos">Instrumentos de medición</a></li>
             <li><a href="/productos.html?cat=herramentales">Herramentales</a></li>
             <li><a href="/productos.html?cat=cintas">Cintas adhesivas</a></li>
             <li><a href="/productos.html?cat=limpiadores">Limpiadores</a></li>
@@ -176,10 +180,11 @@ function pie_html(): string {
           <h3>Contacto</h3>
           <ul>
             <li><a href="' . $mapsUrl . '" target="_blank" rel="noopener">' . esc($calle) . '<br>' . esc($ciudad) . ', ' . esc($estado) . ' ' . esc($cp) . '</a></li>
-            <li><a href="tel:+52' . esc($tel) . '">' . esc($telFmt) . '</a></li>
+            <li><a href="tel:+52' . esc($tel) . '">Conmutador ' . esc($telFmt) . '</a></li>
             <li><a href="https://wa.me/' . esc($waIntl) . '" target="_blank" rel="noopener">WhatsApp ' . esc($waFmt) . '</a></li>
             <li><a href="mailto:' . esc($correoInfo) . '">' . esc($correoInfo) . '</a></li>
             <li><a href="mailto:' . esc($correoVentas) . '">' . esc($correoVentas) . '</a></li>
+            <li><a href="mailto:' . esc($correoAtencion) . '">' . esc($correoAtencion) . '</a></li>
           </ul>
         </div>
       </div>
@@ -191,7 +196,7 @@ function pie_html(): string {
     </div>
   </footer>
 
-  <a class="wa-float" href="' . enlaceWhatsApp('Hola Flexuministros, me gustaría recibir información sobre sus productos.') . '" target="_blank" rel="noopener" aria-label="Escribir a Flexuministros por WhatsApp">
+  <a class="wa-float" href="' . enlaceWhatsApp('Hola Flexuministros, me gustaría recibir información sobre sus productos.') . '" target="_blank" rel="noopener" aria-label="Hablar con un asesor por WhatsApp">
     <span class="wa-float__label" aria-hidden="true">Hablar con un asesor</span>
     <img src="/assets/img/whatsapp.svg" width="32" height="32" alt="" aria-hidden="true">
   </a>

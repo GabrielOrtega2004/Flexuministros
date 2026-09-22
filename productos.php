@@ -2,6 +2,8 @@
 require_once __DIR__ . '/inc/partials.php';
 require_once __DIR__ . '/inc/tarjetas.php';
 
+$cfg = todaConfig();
+$c = fn(string $clave, string $porDefecto = '') => $cfg[$clave] ?? $porDefecto;
 $categorias = obtenerCategorias();
 $productos = conexionBD()->query(
   'SELECT p.*, c.nombre AS categoria_nombre FROM productos p
@@ -17,7 +19,7 @@ ob_start();
 ?>
 <section class="pagehero pagehero--catalog">
   <div class="pagehero__media" aria-hidden="true">
-    <img src="/assets/img/hero/catalogo-v1.webp" width="1840" height="855" alt="" fetchpriority="high" decoding="async">
+    <img src="/uploads/configuracion/<?= esc($c('productos_hero_imagen', 'catalogo-v3-hd.webp')) ?>" width="<?= (int)$c('productos_hero_ancho', '1559') ?>" height="<?= (int)$c('productos_hero_alto', '1009') ?>" alt="" fetchpriority="high" decoding="async">
   </div>
   <div class="pagehero__veil" aria-hidden="true"></div>
   <div class="container">

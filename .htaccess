@@ -62,10 +62,11 @@ ErrorDocument 404 /404.php
 <IfModule mod_rewrite.c>
   RewriteEngine On
 
-  # Fuerza HTTPS (excepto en localhost, para poder probar el sitio en XAMPP)
+  # Fuerza HTTPS (excepto en localhost, para poder probar el sitio en XAMPP,
+  # con o sin puerto, p. ej. localhost:8091)
   RewriteCond %{HTTPS} !=on
   RewriteCond %{HTTP:X-Forwarded-Proto} !https
-  RewriteCond %{HTTP_HOST} !=localhost
+  RewriteCond %{HTTP_HOST} !^localhost(:[0-9]+)?$
   RewriteRule ^(.*)$ https://%{HTTP_HOST}/$1 [R=301,L]
 
   # Fuerza el subdominio www (coincide con la URL canónica del sitio)
