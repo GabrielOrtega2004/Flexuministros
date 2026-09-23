@@ -7,8 +7,6 @@ $c = fn(string $clave, string $porDefecto = '') => $cfg[$clave] ?? $porDefecto;
 
 $marcas = obtenerMarcas();
 $categorias = obtenerCategorias();
-$anioFundacion = (int)$c('fundacion_anio', '1996');
-$aniosExperiencia = (int)date('Y') - $anioFundacion;
 $totalProductos = (int)conexionBD()->query('SELECT COUNT(*) FROM productos WHERE visible = 1')->fetchColumn();
 $totalMarcas = count($marcas);
 
@@ -76,7 +74,7 @@ ob_start();
     </div>
 
     <div class="stats hero-in" style="--d:660ms">
-      <div><b data-count="<?= $aniosExperiencia ?>" data-suffix="+"><?= $aniosExperiencia ?>+</b><span>Años de experiencia</span></div>
+      <div><b data-count="30" data-suffix="+">30+</b><span>Años de experiencia</span></div>
       <div><b data-count="150" data-suffix="+">150+</b><span>Productos en catálogo</span></div>
       <div><b data-count="20" data-suffix="+">20+</b><span>Marcas representadas</span></div>
     </div>

@@ -31,7 +31,7 @@ ob_start();
     <div class="grid grid--2" style="gap:clamp(2rem,5vw,4rem);align-items:start">
       <div class="prose" data-reveal="left">
         <p class="eyebrow">Nuestra historia</p>
-        <h2>Fundada en <?= esc($anioFundacion) ?> en Guadalajara, respaldada por más de 30 años de experiencia en la industria flexográfica</h2>
+        <h2>Fundada en <?= esc($anioFundacion) ?>, respaldada por más de 30 años de experiencia en la industria flexográfica</h2>
         <p>Flexuministros fue fundada en <?= esc($anioFundacion) ?> en México (Guadalajara) con el objetivo de acercar a los impresores mexicanos: productos, tecnología y conocimiento especializado, respaldados por décadas de experiencia en la industria flexográfica.</p>
         <p>A lo largo de los años hemos desarrollado una oferta integral que acompaña distintas etapas del proceso productivo: preparación de tintas, montaje de placas, impresión, suajado, limpieza de rodillos anilox, control de calidad, empaque y herramientas para el control de producción.</p>
         <p>Además de suministros y consumibles especializados, comercializamos equipos nuevos y usados, herramentales y soluciones técnicas, ofreciendo asesoría para seleccionar la alternativa más adecuada de acuerdo con productividad, desempeño, calidad y presupuesto.</p>
