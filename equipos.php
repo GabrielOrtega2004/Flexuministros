@@ -14,6 +14,8 @@ $items = array_map(fn($e) => [
   'imagen_ancho' => $e['imagen_ancho'], 'imagen_alto' => $e['imagen_alto'], 'whatsapp_texto' => $e['whatsapp_texto'],
 ], $equipos);
 
+$marcasEquipos = array_filter(obtenerMarcasServicio(true), fn($m) => $m['nombre'] !== 'Aalberts Surface Technologies');
+
 ob_start();
 ?>
 <section class="svc-top" data-pausar-fuera>
@@ -31,6 +33,27 @@ ob_start();
 </section>
 
 <?php foreach ($items as $i => $item) echo seccion_con_foto($item, $i, 'equipos'); ?>
+
+<?php if ($marcasEquipos): ?>
+<section class="section section--tight svc-brands">
+  <div class="container">
+    <div class="section-head center">
+      <p class="eyebrow">Representantes y distribuidores autorizados en México</p>
+      <h2>Marcas que respaldan nuestros equipos y soluciones</h2>
+      <p class="lead">Equipos, tecnología y soluciones especializadas de marcas líderes a nivel mundial.</p>
+    </div>
+    <div class="grid grid--2" style="max-width:44rem;margin-inline:auto">
+      <?php foreach ($marcasEquipos as $m): ?>
+      <div class="card">
+        <img class="svc-brands__logo" src="/uploads/marcas_servicio/<?= esc($m['logo']) ?>" width="611" height="160" alt="<?= esc($m['nombre']) ?>" loading="lazy" decoding="async">
+        <h3><?= esc($m['nombre']) ?></h3>
+        <p><?= esc($m['descripcion']) ?></p>
+      </div>
+      <?php endforeach; ?>
+    </div>
+  </div>
+</section>
+<?php endif; ?>
 
 <?= banda_cta_html() ?>
 <?php

@@ -65,7 +65,7 @@ ob_start();
         <div class="principle__top"><span class="principle__icon"><?= icono('eye') ?></span><span class="principle__number" aria-hidden="true">02</span></div>
         <span class="principle__rule" aria-hidden="true"></span>
         <h3>Visión</h3>
-        <p>Convertirnos en líderes de la comercialización de suministros, equipos y soluciones innovadoras para impresión flexográfica, satisfaciendo las necesidades de calidad, servicio y precio para todos nuestros clientes, comprometidos con el desarrollo constante de la empresa, de nuestros colaboradores y el beneficio social.</p>
+        <p>Convertirnos en líderes de la comercialización de suministros, equipos y soluciones innovadoras para impresión, satisfaciendo las necesidades de calidad, servicio y precio para todos nuestros clientes, comprometidos con el desarrollo constante de la empresa, de nuestros colaboradores y el beneficio social.</p>
       </article>
       <article class="principle" data-reveal="zoom" style="--d:200ms">
         <div class="principle__top"><span class="principle__icon"><?= icono('spark') ?></span><span class="principle__number" aria-hidden="true">03</span></div>
@@ -128,7 +128,7 @@ ob_start();
     <div class="section-head center" data-reveal>
       <p class="eyebrow">Alianzas</p>
       <h2 id="marcas-h">Marcas que representamos</h2>
-      <p class="lead">Firmas reconocidas mundialmente en anilox, rasquetas, cintas, instrumentos de medición y herramentales de corte.</p>
+      <p class="lead">Soluciones respaldadas por marcas líderes a nivel mundial, reconocidas por su calidad, innovación y desempeño.</p>
     </div>
     <?= marcas_html($marcas) ?>
   </div>

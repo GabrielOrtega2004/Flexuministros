@@ -13,7 +13,7 @@ $items = array_map(fn($s) => [
   'imagen_ancho' => $s['imagen_ancho'], 'imagen_alto' => $s['imagen_alto'], 'whatsapp_texto' => $s['whatsapp_texto'],
 ], $servicios);
 
-$marcasServicio = obtenerMarcasServicio(true);
+$marcasServicio = array_filter(obtenerMarcasServicio(true), fn($m) => $m['nombre'] !== 'BDTECH');
 
 ob_start();
 ?>
@@ -37,11 +37,11 @@ ob_start();
 <section class="section section--tight svc-brands">
   <div class="container">
     <div class="section-head center">
-      <p class="eyebrow">Representantes y distribuidores autorizados en México</p>
-      <h2>Las marcas detrás de nuestro servicio técnico</h2>
-      <p class="lead">Marcas líderes mundiales que representamos con experiencia y respaldo.</p>
+      <p class="eyebrow">Tecnología y respaldo especializado</p>
+      <h2>Marcas que respaldan nuestros servicios</h2>
+      <p class="lead">Contamos con el respaldo de tecnologías y fabricantes reconocidos mundialmente, así como soluciones locales.</p>
     </div>
-    <div class="grid grid--3">
+    <div class="grid grid--2" style="max-width:44rem;margin-inline:auto">
       <?php foreach ($marcasServicio as $m): ?>
       <div class="card">
         <img class="svc-brands__logo" src="/uploads/marcas_servicio/<?= esc($m['logo']) ?>" width="611" height="160" alt="<?= esc($m['nombre']) ?>" loading="lazy" decoding="async">
