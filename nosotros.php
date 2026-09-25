@@ -145,7 +145,8 @@ ob_start();
     <div class="grid grid--3">
       <?php foreach ($representantes as $m): ?>
       <div class="card">
-        <img class="svc-brands__logo" src="/uploads/marcas_servicio/<?= esc($m['logo']) ?>" width="611" height="160" alt="<?= esc($m['nombre']) ?>" loading="lazy" decoding="async" <?= in_array($m['nombre'], ['BDTECH', 'Aalberts Surface Technologies']) ? 'style="height:3.75rem"' : '' ?>>
+        <?php $altoLogo = ['BDTECH' => '3.75rem', 'Aalberts Surface Technologies' => '4.4rem'][$m['nombre']] ?? null; ?>
+        <img class="svc-brands__logo" src="/uploads/marcas_servicio/<?= esc($m['logo']) ?>" width="611" height="160" alt="<?= esc($m['nombre']) ?>" loading="lazy" decoding="async" <?= $altoLogo ? 'style="height:' . $altoLogo . '"' : '' ?>>
         <h3><?= esc($m['nombre']) ?></h3>
         <p><?= esc($m['descripcion']) ?></p>
       </div>
