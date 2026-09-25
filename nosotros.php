@@ -7,6 +7,7 @@ $c = fn(string $clave, string $porDefecto = '') => $cfg[$clave] ?? $porDefecto;
 $anioFundacion = $c('fundacion_anio', '1996');
 $mision = $c('mision_texto', 'Brindar a nuestros clientes soluciones integrales mediante productos innovadores, equipos confiables y asesoría técnica especializada que contribuyan al éxito y crecimiento de sus negocios de impresión.');
 $marcas = obtenerMarcas();
+$representantes = obtenerMarcasServicio(true);
 
 ob_start();
 ?>
@@ -133,6 +134,26 @@ ob_start();
     <?= marcas_html($marcas) ?>
   </div>
 </section>
+
+<?php if ($representantes): ?>
+<section class="section section--tight svc-brands">
+  <div class="container">
+    <div class="section-head center" data-reveal>
+      <h2>Representantes autorizados para México</h2>
+      <p class="lead">Representación directa de fabricantes internacionales, brindando respaldo comercial, técnico y especializado en todo México.</p>
+    </div>
+    <div class="grid grid--3">
+      <?php foreach ($representantes as $m): ?>
+      <div class="card">
+        <img class="svc-brands__logo" src="/uploads/marcas_servicio/<?= esc($m['logo']) ?>" width="611" height="160" alt="<?= esc($m['nombre']) ?>" loading="lazy" decoding="async">
+        <h3><?= esc($m['nombre']) ?></h3>
+        <p><?= esc($m['descripcion']) ?></p>
+      </div>
+      <?php endforeach; ?>
+    </div>
+  </div>
+</section>
+<?php endif; ?>
 
 <?= banda_cta_html() ?>
 <?php
